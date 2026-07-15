@@ -43,18 +43,13 @@ For your second milestone, explain what you've worked on since your previous mil
 
 # First Milestone
 
-**Don't forget to replace the text below with the embedding for your milestone video. Go to Youtube, click Share -> Embed, and copy and paste the code to replace what's below.**
+<iframe width="560" height="315" src="https://www.youtube.com/embed/GgoyMvBfkQQ?si=TGrniOJgSrJU-pdU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/CaCazFBhYKs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+For my first milestone, I got the main parts of my wrist rehab device wired on the breadboard, including the Arduino Nano ESP32, flex sensor, and two piezo buzzers. I also have code that makes the buzzers beep when the flex sensor bends past a certain angle, so it can detect when the wrist is in a bad position. I chose this project because it has a biotech and bioengineering aspect to it, which I found really interesting.
 
-For your first milestone, describe what your project is and how you plan to build it. You can include:
-- An explanation about the different components of your project and how they will all integrate together
-- Technical progress you've made so far
-- Challenges you're facing and solving in your future milestones
-- What your plan is to complete your project
+One challenge I faced was understanding the flex sensor readings, because the numbers were really confusing and sometimes I was seeing values in the thousands even when the sensor looked straight, so I had to spend time figuring out how the sensor actually works. The next step is to wire up the IMU sensors, including the gyroscope, magnetometer, and accelerometer. Then I shpadd green and red LEDs so they can show when the wrist is in a good or bad position., however this is a later modification. While it is visually helpful, I have already added 2 piezzo buzzers to alert the user if their wrist is at a bad position. Another challenge I faced was wiring everything correctly, since I had overlapping wires on the breadboard that connected negative to positive and I did not notice at first. Also the Arduino and breadboard model were slightly different which was challenging at first, since the power and ground on Tinkercad were on opposite sides on the breadbard I was using, and I was using another Arduino model (Nano ESP 32), but I got used it by understanding and comparing how the pins were somewhat located differently. Tinkercad was also missing the Adafruit IMU which was important for me to add to my breadboard, so I decided to use Fritzing. also need to explore the adafruit libraries in Ardunio to get a better understanding of how I can apply the IMU to my porject. A quick change I could add to the code is instead of simply saying "Bad" when the wrist is flexed or extended at a poor position, it could say "Tilt wrist up/down" so it is more ideal for the user and they get proper feedback. 
 
-# Schematics 
-Here's where you'll put images of your schematics. [Tinkercad](https://www.tinkercad.com/blog/official-guide-to-tinkercad-circuits) and [Fritzing](https://fritzing.org/learning/) are both great resoruces to create professional schematic diagrams, though BSE recommends Tinkercad becuase it can be done easily and for free in the browser. 
+<img width="1148" height="1088" alt="image" src="https://github.com/user-attachments/assets/08d36800-5fcb-4170-9331-ecb21ebdf4b2" />
 
 # Code
 Here's where you'll put your code. The syntax below places it into a block of code. Follow the guide [here]([url](https://www.markdownguide.org/extended-syntax/)) to learn how to customize it to your project needs. 
@@ -73,8 +68,6 @@ void loop() {
 ```
 
 # Bill of Materials
-Here's where you'll list the parts in your project. To add more rows, just copy and paste the example rows below.
-Don't forget to place the link of where to buy each component inside the quotation marks in the corresponding row after href =. Follow the guide [here]([url](https://www.markdownguide.org/extended-syntax/)) to learn how to customize this to your project needs. 
 
 | **Part** | **Note** | **Price** | **Link** |
 |:--:|:--:|:--:|:--:|
@@ -85,25 +78,20 @@ Don't forget to place the link of where to buy each component inside the quotati
 | Adafruit LSM6DS3TR-C + LIS3MDL | Contains gyroscope, accelerometer, and magnetometer | $19.95 | <a href="https://www.adafruit.com/product/5543?gad_source=1&gclid=Cj0KCQjw4MSzBhC8ARIsAPFOuyW3bKrwhMSo2VoSfvSt319uDnnbDld4MoYm0IzXAV2mbivYMjEGez4aApeGEALw_wcB"> Link </a> |
 | INIU Portable Charger | Charging my computer | $24.99 | <a href="https://www.amazon.com/INIU-Portable-10000mAh-Accessories-Essentials/dp/B0DP2N5TX7?th=1"> Link </a> |
 | Arduino Nano ESP32 | Processor that connects everything and contains code | $19.30 | <a href="https://www.amazon.com/Arduino-ABX00083-Bluetooth-MicroPython-Compatible/dp/B0C947BHK5?th=1"> Link </a> |
-| Item Name | What the item is used for | $Price | <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a> |
+| Jumper Wires | Connecting all components on the breadboard | $6.98  | <a href="https://www.amazon.com/Elegoo-EL-CP-004-Multicolored-Breadboard-arduino/dp/B01EV70C78/ref=sr_1_3?crid=1GJIWX8C47LE6&keywords=jumper%2Bwires&qid=1689572180&sprefix=jumper%2Bwire%2Caps%2C200&sr=8-3&th=1"> Link </a> |
 | Item Name | What the item is used for | $Price | <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a> |
 
 # Other Resources/Examples
-One of the best parts about Github is that you can view how other people set up their own work. Here are some past BSE portfolios that are awesome examples. You can view how they set up their portfolio, and you can view their index.md files to understand how they implemented different portfolio components.
-- [Example 1](https://trashytuber.github.io/YimingJiaBlueStamp/)
-- [Example 2](https://sviatil0.github.io/Sviatoslav_BSE/)
+- [Example 1]([https://trashytuber.github.io/YimingJiaBlueStamp/](https://mikulrana.com/Wrist-Rehabilitation-Device/))
+- [Example 2]([https://sviatil0.github.io/Sviatoslav_BSE/](https://www.starlino.com/imu_guide.html#google_vignette))
 - [Example 3](https://arneshkumar.github.io/arneshbluestamp/)
 
 # Starter Project - WeevilEye
 
-**Don't forget to replace the text below with the embedding for your milestone video. Go to Youtube, click Share -> Embed, and copy and paste the code to replace what's below.**
-
 <iframe width="560" height="315" src="https://www.youtube.com/embed/dgQTHcTxFh4?si=p-jI4gyakN629boF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-For your first milestone, describe what your project is and how you plan to build it. You can include:
-- An explanation about the different components of your project and how they will all integrate together
-- Technical progress you've made so far
-- Challenges you're facing and solving in your future milestones
-- What your plan is to complete your project
+For my first milestone, I chose the Weevil Eye project because it seemed like a good starter project for me since I do not have much background in engineering and I wanted to get used to soldering and building a circuit. The project uses a photocell, resistors, LEDs, and a coin battery, and all of the parts work together so the eyes light up depending on the light level around it. One challenge I faced was where I put too much solder on pins that were too close together, so I had to remove it with a desoldering tool and fix the connection. I also accidentally used the wrong LEDs instead of the red ones I was supposed to use.
+
+Later on I need to make sure the coin battery holder is soldered properly so everything is fully connected and the LEDs can actually light up. With practicing soldering and circuit building, I felt more prepared to move on to my intensive project, the wrist rehabilitation device.
 
 To watch the BSE tutorial on how to create a portfolio, click here.
