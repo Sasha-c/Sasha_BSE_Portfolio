@@ -31,7 +31,7 @@ For your final milestone, explain the outcome of your project. Key details to in
 
 # Second Milestone
 
-**Don't forget to replace the text below with the embedding for your milestone video. Go to Youtube, click Share -> Embed, and copy and paste the code to replace what's below.**
+**Don't forget to replace the text below with the embedding for your milestone video. Go to Youtube, click Share -> Embed, and copy and paste the code to below.**
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/y3VAmNlER5Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
@@ -43,7 +43,7 @@ For your second milestone, explain what you've worked on since your previous mil
 
 # First Milestone
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/GgoyMvBfkQQ?si=TGrniOJgSrJU-pdU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/GgoyMvBfkQQ?si=PylLuzmM0J2gja_i" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 For my first milestone, I got the main parts of my wrist rehab device wired on the breadboard, including the Arduino Nano ESP32, flex sensor, and two piezo buzzers. I also have code that makes the buzzers beep when the flex sensor bends past a certain angle, so it can detect when the wrist is in a bad position. I chose this project because it has a bioengineering aspect to it, which I found really interesting.
 
@@ -93,5 +93,3 @@ void loop() {
 For my first milestone, I chose the Weevil Eye project because it seemed like a good starter project for me since I do not have much background in engineering and I wanted to get used to soldering and building a circuit. The project uses a photocell, resistors, LEDs, and a coin battery, and all of the parts work together so the eyes light up depending on the light level around it. One challenge I faced was where I put too much solder on pins that were too close together, so I had to remove it with a desoldering tool and fix the connection. I also accidentally used the wrong LEDs instead of the red ones I was supposed to use.
 
 Later on I need to make sure the coin battery holder is soldered properly so everything is fully connected and the LEDs can actually light up. With practicing soldering and circuit building, I felt more prepared to move on to my intensive project, the wrist rehabilitation device.
-
-To watch the BSE tutorial on how to create a portfolio, click here.
