@@ -38,8 +38,14 @@ For your second milestone, explain what you've worked on since your previous mil
 - What has been surprising about the project so far
 - Previous challenges you faced that you overcame
 - What needs to be completed before your final milestone
+- challenges- i struggled a lot with trying to figure out how I shoud apply theAdafruit IMU to my project, Additionally I figured out my flex sensor readings were strange because the ground pin of the flesx sensor was on the same row as the D10 oin of the arduino, and once I moved it it was w0rking. aditoinally, the IMU that I was proignally given was thoight to be not working porperly since hen it was connected to the breadboard and was moving the serial monitor outpits wouldnt change bt hwen I took it out of the breadboard and it was still wired to the arduino it the values started to change. I later just used the code frmo the adafruit libraries in the arduino application and I saw proper readings and measurements. While this was hapening I was able to get another adafruit and soldered the pins to the IMU properly this time. I also used another breadboard to see if there was a faulty connection where I placed the IMU originally, ut that wasnt the case and I ended up keeping the new breadbpard and everything else transfered. This created another minor challenge since I didn;t realize the new breadbaord i was given was not completely connection, there was a gap in the middle so it was mor like 2 halves of breadboardss tuck together, but not connected. When I ws wireidng and the buzzers werent working it took some time for me to understand that I had to connect the 2 halves to not cram everything on one half of the breadboard. While changing the breadboard did not work, it helped me practice wiring and getting better at understanding why certain wires were placed certain ways.
 
 <img width="810" height="898" alt="image" src="https://github.com/user-attachments/assets/b6ab0986-1bb6-4d4e-bdf8-637e60502044" />
+This is my updated schematic made in Fritzing, which has the actual components I am using unlike Tinkercad. Compared to my last schematic, I had to change the positioning of some components on the Fritzing application, but it did not change anything as everything was going to be soldered onto the solderable breadboard. This simply helped me beter visualize again how the components would be wired together, and since I had the actual Arduino and Adafruit IMU it helped me.
+
+*insert picture of finished solderable breadboard*
+
+
 
 # First Milestone
 
