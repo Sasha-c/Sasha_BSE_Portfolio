@@ -1,12 +1,6 @@
 # Wrist Rehab Device
 Replace this text with a brief description (2-3 sentences) of your project. This description should draw the reader in and make them interested in what you've built. You can include what the biggest challenges, takeaways, and triumphs from completing the project were. As you complete your portfolio, remember your audience is less familiar than you are with all that your project entails!
 
-You should comment out all portions of your portfolio that you have not completed yet, as well as any instructions:
-```HTML 
-<!--- This is an HTML comment in Markdown -->
-<!--- Anything between these symbols will not render on the published site -->
-```
-
 | **Engineer** | **School** | **Interest** | **Grade** |
 |:--:|:--:|:--:|:--:|
 | Sasha S | Emerald High School | Biomedical Engineering | Incoming Junior
@@ -84,6 +78,9 @@ void loop() {
 | INIU Portable Charger | Charging my computer | $24.99 | <a href="https://www.amazon.com/INIU-Portable-10000mAh-Accessories-Essentials/dp/B0DP2N5TX7?th=1"> Link </a> |
 | Arduino Nano ESP32 | Processor that connects everything and contains code | $19.30 | <a href="https://www.amazon.com/Arduino-ABX00083-Bluetooth-MicroPython-Compatible/dp/B0C947BHK5?th=1"> Link </a> |
 | Jumper Wires | Connecting all components on the breadboard | $6.98  | <a href="https://www.amazon.com/Elegoo-EL-CP-004-Multicolored-Breadboard-arduino/dp/B01EV70C78/ref=sr_1_3?crid=1GJIWX8C47LE6&keywords=jumper%2Bwires&qid=1689572180&sprefix=jumper%2Bwire%2Caps%2C200&sr=8-3&th=1"> Link </a> |
+| Solderable Breadboard | Connects all soldered components, more convenient to wear on arm | $11.99 | <a href="https://www.amazon.com/Solderable-Breadboard-Electronics-Projects-Gold-Plated/dp/B07YSCGBL7?th=1"> Link </a> |
+| Solderable Breadboard | Connects all soldered components, more convenient to wear on arm | $11.99 | <a href="https://www.amazon.com/Solderable-Breadboard-Electronics-Projects-Gold-Plated/dp/B07YSCGBL7?th=1"> Link </a> |
+| Solderable Breadboard | Connects all soldered components, more convenient to wear on arm | $11.99 | <a href="https://www.amazon.com/Solderable-Breadboard-Electronics-Projects-Gold-Plated/dp/B07YSCGBL7?th=1"> Link </a> |
 | Solderable Breadboard | Connects all soldered components, more convenient to wear on arm | $11.99 | <a href="https://www.amazon.com/Solderable-Breadboard-Electronics-Projects-Gold-Plated/dp/B07YSCGBL7?th=1"> Link </a> |
 
 # Other Resources/Examples
