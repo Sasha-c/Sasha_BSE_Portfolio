@@ -33,7 +33,8 @@ One challenge I faced was figuring out how to apply the Adafruit IMU to my proje
 
 This is my updated schematic made in Fritzing, which has the actual components I am using unlike Tinkercad. Compared to my last schematic, I had to change the positioning of some components on the Fritzing application, but it did not change anything as everything was going to be soldered onto the solderable breadboard. This helped me because I could better visualize how the components would be wired together since I had the Arduino and Adafruit IMU I was using. transferring everything to another breadboard was important because it was more compact and neat, and it was convinient for the user to have a lighter weight breadboard on their forearm.
 
-<img width="581" height="745" alt="Screenshot 2026-07-17 at 2 40 53 PM" src="https://github.com/user-attachments/assets/420e5265-d3a7-4773-9116-cfeb6eef7c82" /><img width="570" height="675" alt="Screenshot 2026-07-17 at 2 41 34 PM" src="https://github.com/user-attachments/assets/b3462fd5-3494-468a-9dca-d258a2d0fee2" />
+<img width="581" height="745" alt="Screenshot 2026-07-17 at 2 40 53 PM" src="https://github.com/user-attachments/assets/420e5265-d3a7-4773-9116-cfeb6eef7c82" />
+<img width="570" height="675" alt="Screenshot 2026-07-17 at 2 41 34 PM" src="https://github.com/user-attachments/assets/b3462fd5-3494-468a-9dca-d258a2d0fee2" />
 
 I chose to wire on the botton to high the wires, and I also trimmed the pin ends so the used does not feel it poking through the wrist sleeve. 
 
@@ -82,9 +83,8 @@ void loop() {
 | Solderable Breadboard | Connects all soldered components, more convenient to wear on arm | $11.99 | <a href="https://www.amazon.com/Solderable-Breadboard-Electronics-Projects-Gold-Plated/dp/B07YSCGBL7?th=1"> Link </a> |
 
 # Other Resources/Examples
-- [Example 1](https://mikulrana.com/Wrist-Rehabilitation-Device/))
-- [Example 2](https://www.starlino.com/imu_guide.html#google_vignette))
-- [Example 3](https://arneshkumar.github.io/arneshbluestamp/)
+- [Example 1](https://mikulrana.com/Wrist-Rehabilitation-Device/)
+- [Example 2](https://www.starlino.com/imu_guide.html#google_vignette)
 
 # Starter Project - WeevilEye
 
