@@ -18,8 +18,7 @@ For your final milestone, explain the outcome of your project. Key details to in
 - What your biggest challenges and triumphs were at BSE
 - A summary of key topics you learned about
 - What you hope to learn in the future after everything you've learned at BSE
-
-
+<img width="396" height="771" alt="Screenshot 2026-07-28 at 3 26 59 PM" src="https://github.com/user-attachments/assets/9c476351-b827-4b49-bf5b-14fd596c77d7" />
 
 # Second Milestone
 
