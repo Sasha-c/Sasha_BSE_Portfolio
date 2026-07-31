@@ -1,24 +1,153 @@
 # Wrist Rehab Device
-Replace this text with a brief description (2-3 sentences) of your project. This description should draw the reader in and make them interested in what you've built. You can include what the biggest challenges, takeaways, and triumphs from completing the project were. As you complete your portfolio, remember your audience is less familiar than you are with all that your project entails!
-
+My wrist rehabilitation device
 | **Engineer** | **School** | **Interest** | **Grade** |
 |:--:|:--:|:--:|:--:|
 | Sasha S | Emerald High School | Biomedical Engineering | Incoming Junior
 
-**Replace the BlueStamp logo below with an image of yourself and your completed project. Follow the guide [here](https://tomcam.github.io/least-github-pages/adding-images-github-pages-site.html) if you need help.**
-
-![Headstone Image](logo.svg)
+add pic here
   
 # Final Milestone
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/F7M7imOVGug" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-For your final milestone, explain the outcome of your project. Key details to include are:
-- What you've accomplished since your previous milestone
-- What your biggest challenges and triumphs were at BSE
-- A summary of key topics you learned about
-- What you hope to learn in the future after everything you've learned at BSE
+Since my previous milestone I sewed the solderable breadboard and flex sensor to my wrist compression sleeve, and worked on fixing the threshold to when the feedback of red LEDs turning on and buzzers going back happens. I also had to try different methods of wiring my flex sensor. In my code I added a fluctuation to average the A0 value afger every 5 readings to see what the average when I bent my wrist in different positinos. 
+ 
+Challenges I faced during this milestone were mainly with the flex sensor. the readings I was seeing were incredibally inconcsistant and hard for me to understsnd as even when bending the flex sensor a lot the values were not changing. After rewiring multiple wires and resewing everything together, I still was not seeing consistant values coming from the A0 pin. Sewing was challenging as I was new to it, but I was able to finish sewing and supre glue the ends. One method of attaching my flex sensor to the solderable board was ysing jumper wires and soldering the pins of the wires to the pins of the flex sesor. But this was hard since I was not able to solder it properly for it to fully connect. After thst I was recomended to use female jumper wires and hot glue it to the flex sensor pins, but the hot glue did not work well to stick the pins. Next i was advised to use heat shrink and solder it to connect jumper wires to the flex sensor pins, and I had to try this 2 times. Even after this I was still not getting consistant values from my flex sensor. For my next steps I would implement a better application for the IMU since fr now you can only see the X, Y, and Z values, but it could also help make the angle measurements into actual degrees. 
 <img width="396" height="771" alt="Screenshot 2026-07-28 at 3 26 59 PM" src="https://github.com/user-attachments/assets/9c476351-b827-4b49-bf5b-14fd596c77d7" />
+
+Final Code: 
+```cpp
+// C++ code
+//
+
+#include <Wire.h>
+#include <Adafruit_LIS3MDL.h>
+#include <Adafruit_Sensor.h>
+
+float flexValue;
+
+// int angle = 0;
+
+const int FLEX_PIN = A0; // 
+
+// threshold
+int extendTHRESHOLD = -24;
+
+int flexTHRESHOLD = -32;
+
+int buzzer1 = D2;
+
+int buzzer2 = D4;
+
+int LEDred = D6;
+
+int LEDgreen = D8;
+
+int total;
+
+Adafruit_LIS3MDL lis3mdl;
+#define LIS3MDL_CLK 13
+#define LIS3MDL_MISO 12
+#define LIS3MDL_MOSI 11
+#define LIS3MDL_CS 10
+
+
+const float VCC = 3.33;                     // Measured voltage of ArdunioNano 5V line
+const float R_DIV = 10000.0;                // Measured resistance of resistor
+const float STRAIGHT_RESISTANCE = 15000.0;  // resistance when straight
+const float BEND_RESISTANCE = 70000.0;      // resistance at 90 deg
+
+void setup(void) {
+  Serial.begin(9600);
+
+  // Try to initialize!
+  if (!lis3mdl.begin_I2C()) {  // hardware I2C mode, can pass in address & alt Wire
+                               //if (! lis3mdl.begin_SPI(LIS3MDL_CS)) {  // hardware SPI mode
+                               //if (! lis3mdl.begin_SPI(LIS3MDL_CS, LIS3MDL_CLK, LIS3MDL_MISO, LIS3MDL_MOSI)) { // soft SPI
+    Serial.println("Failed to find LIS3MDL chip");
+    while (1) { delay(10); }
+  }
+  Serial.println("LIS3MDL Found!");
+  lis3mdl.setPerformanceMode(LIS3MDL_MEDIUMMODE);
+  lis3mdl.setOperationMode(LIS3MDL_CONTINUOUSMODE);
+  Serial.print("Operation mode set to: ");
+  // Single shot mode will complete conversion and go into power down
+  switch (lis3mdl.getOperationMode()) {
+    case LIS3MDL_CONTINUOUSMODE: Serial.println("Continuous"); break;
+    case LIS3MDL_SINGLEMODE: Serial.println("Single mode"); break;
+    case LIS3MDL_POWERDOWNMODE: Serial.println("Power-down"); break;
+  }
+
+  lis3mdl.setDataRate(LIS3MDL_DATARATE_155_HZ);
+
+
+  lis3mdl.setRange(LIS3MDL_RANGE_4_GAUSS);
+  Serial.print("Range set to: ");
+  switch (lis3mdl.getRange()) {
+    case LIS3MDL_RANGE_4_GAUSS: Serial.println("+-4 gauss"); break;
+    case LIS3MDL_RANGE_8_GAUSS: Serial.println("+-8 gauss"); break;
+    case LIS3MDL_RANGE_12_GAUSS: Serial.println("+-12 gauss"); break;
+    case LIS3MDL_RANGE_16_GAUSS: Serial.println("+-16 gauss"); break;
+  }
+
+  lis3mdl.setIntThreshold(500);
+  lis3mdl.configInterrupt(false, false, true,  
+                          true,               
+                          false,               
+                          true);               
+  pinMode(FLEX_PIN, INPUT);
+  pinMode(buzzer2, OUTPUT);
+  pinMode(buzzer1, OUTPUT);
+  pinMode(LEDgreen, OUTPUT);
+  pinMode(LEDred, OUTPUT);
+}
+
+void loop() {
+  lis3mdl.read();  // get X Y and Z data at once
+  // Then print out the raw data
+  Serial.print("\nX:  ");
+  Serial.print(lis3mdl.x);
+  Serial.print("  \tY:  ");
+  Serial.print(lis3mdl.y);
+  Serial.print("  \tZ:  ");
+  Serial.println(lis3mdl.z);
+
+  total = 0;
+
+  for(int i = 0; i < 5; i++) {
+    total = total + analogRead(FLEX_PIN); 
+    delay(120);
+  }
+  flexValue = total / 5.0; 
+
+  Serial.print("A0 VALUE: ");
+  Serial.println(flexValue); 
+  //angle = analogRead(A0);
+
+  int flexADC = 4095 - flexValue; // ADC-analog digital converter 
+  float flexV = flexADC * VCC / 1023.0;
+  float flexR = R_DIV * (VCC / flexV - 1.0);
+  // Use the calculated resistance to estimate the sensor's bend angle:
+  float angle = map(flexR, STRAIGHT_RESISTANCE, BEND_RESISTANCE, 0, 90.0);
+
+  Serial.print("ANGLE: ");
+  Serial.println(angle);
+
+  if (angle >= extendTHRESHOLD || angle <= flexTHRESHOLD) {
+    Serial.println("BAD");
+    digitalWrite(buzzer1, HIGH); 
+    digitalWrite(buzzer2, HIGH); 
+    digitalWrite(LEDred, HIGH);
+    digitalWrite(LEDgreen, LOW);
+  } else {
+    digitalWrite(buzzer1, LOW);
+    digitalWrite(buzzer2, LOW);
+    digitalWrite(LEDred, LOW);
+    digitalWrite(LEDgreen, HIGH);
+  }
+  delay(100);  // Delay a little bit to improve simulation performance
+}
+```
 
 # Second Milestone
 
@@ -48,19 +177,56 @@ One challenge I faced was understanding the flex sensor readings, because the nu
 <img width="935" height="661" alt="Screenshot 2026-07-17 at 8 43 40 AM" src="https://github.com/user-attachments/assets/b30fbdab-2eed-4d67-838e-dd506257bd3f" />
 This schematic shows my wrist rehab prototype on the breadboard. The flex sensor is connected to analog pin A0, and the two piezo buzzers are connected to digital pins 6 and 8. I also tested the LED part quickly in Tinkercad, so that part is shown in the diagram even though I did not wire the LEDs on my actual breadboard yet. The resistors for the LED both have a resistance of 100 ohms, but the actual reisisters I am using have a resistance of 120 ohms, and the resistor for my flex sensor is 10k ohms.
 
-# Code
-Here's where you'll put your code. The syntax below places it into a block of code. Follow the guide [here]([url](https://www.markdownguide.org/extended-syntax/)) to learn how to customize it to your project needs. 
+```ccpp
+// C++ code
+//
+int flexValue = 0;
 
-```c++
-void setup() {
-  // put your setup code here, to run once:
+//int angle = 0;
+
+int FLEX_PIN = A0;
+
+// threshold
+int THRESHOLD =63;
+
+const float VCC = 3.33; // Measured voltage of ArdunioNano 5V line
+const float R_DIV = 10000.0; // Measured resistance of resistor
+const float STRAIGHT_RESISTANCE = 15000.0; // resistance when straight
+const float BEND_RESISTANCE = 70000.0; // resistance at 90 deg
+
+
+void setup()
+{
+  pinMode(A0, INPUT);
+  pinMode(D6, OUTPUT);
+  pinMode(D8, OUTPUT);
   Serial.begin(9600);
-  Serial.println("Hello World!");
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
+void loop()
+{
+  Serial.print("A0 VALUE: ");
+  Serial.println(analogRead(A0));
+  //angle = analogRead(A0);
 
+  int flexADC = analogRead(FLEX_PIN);
+  float flexV = flexADC * VCC / 1023.0;
+  float flexR = R_DIV * (VCC / flexV - 1.0);
+  // Use the calculated resistance to estimate the sensor's bend angle:
+  float angle = map(flexR, STRAIGHT_RESISTANCE, BEND_RESISTANCE,0, 90.0);
+
+  Serial.print("ANGLE: ");
+  Serial.println(angle);
+
+  if (angle >= THRESHOLD) {
+    Serial.println("BAD");
+    digitalWrite(D8,HIGH);
+    digitalWrite(D6,HIGH);
+  } else {
+    digitalWrite(D8,LOW);
+    digitalWrite(D6,LOW);
+  }
+  delay(1000); // Delay a little bit to improve simulation performance
 }
 ```
 
@@ -73,12 +239,9 @@ void loop() {
 | Flex Sensor | Measures the bending or flexing data | $18.95 | <a href="https://www.sparkfun.com/flex-sensor-4-5.html"> Link </a> |
 | Wrist Sleeve | Holds all the flex sensor in place | $19.97 | <a href="https://www.amazon.com/Sparthos-Wrist-Support-Sleeves-Pair/dp/B074CXL9RM/ref=sxin_16_pa_sp_search_thematic-asin_sspa?content-id=amzn1.sym.f5052e1c-21bb-4068-ada8-6befb6325d04%3Aamzn1.sym.f5052e1c-21bb-4068-ada8-6befb6325d04&crid=BSDK6TEHKM0P&cv_ct_cx=wrist%2Bcompression%2Bsleeve&dib=eyJ2IjoiMSJ9.a0DsiZrtl24MGErE3gc3hs-1seJpCWa444LFuc4uL7pQ2OfUK_CsEha6Uf9uNkDHGCFhBOGcesu0YlU33vWUZg.4T09Mf5m41lcN3unhAgnkf-BS-7wLZL42PAvfgzOW1I&dib_tag=se&keywords=wrist%2Bcompression%2Bsleeve&pd_rd_i=B07G4JCSJ7&pd_rd_r=5b8b03e2-eea7-49ee-9e5f-8cbb186e681e&pd_rd_w=S03mj&pd_rd_wg=NPat3&pf_rd_p=f5052e1c-21bb-4068-ada8-6befb6325d04&pf_rd_r=0BBVYDM9P8428SY3RMC3&qid=1719355435&sbo=RZvfv%2F%2FHxDF%2BO5021pAnSA%3D%3D&sprefix=wrist%2Bcompress%2Caps%2C446&sr=1-2-baa1f287-65d3-41a3-a655-8bbba0531537-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9zZWFyY2hfdGhlbWF0aWM&th=1"> Link </a> |
 | Adafruit LSM6DS3TR-C + LIS3MDL | Contains gyroscope, accelerometer, and magnetometer | $19.95 | <a href="https://www.adafruit.com/product/5543?gad_source=1&gclid=Cj0KCQjw4MSzBhC8ARIsAPFOuyW3bKrwhMSo2VoSfvSt319uDnnbDld4MoYm0IzXAV2mbivYMjEGez4aApeGEALw_wcB"> Link </a> |
-| INIU Portable Charger | Charging my computer | $24.99 | <a href="https://www.amazon.com/INIU-Portable-10000mAh-Accessories-Essentials/dp/B0DP2N5TX7?th=1"> Link </a> |
+| INIU Portable Charger | Powering Arduino without computer | $24.99 | <a href="https://www.amazon.com/INIU-Portable-10000mAh-Accessories-Essentials/dp/B0DP2N5TX7?th=1"> Link </a> |
 | Arduino Nano ESP32 | Processor that connects everything and contains code | $19.30 | <a href="https://www.amazon.com/Arduino-ABX00083-Bluetooth-MicroPython-Compatible/dp/B0C947BHK5?th=1"> Link </a> |
 | Jumper Wires | Connecting all components on the breadboard | $6.98  | <a href="https://www.amazon.com/Elegoo-EL-CP-004-Multicolored-Breadboard-arduino/dp/B01EV70C78/ref=sr_1_3?crid=1GJIWX8C47LE6&keywords=jumper%2Bwires&qid=1689572180&sprefix=jumper%2Bwire%2Caps%2C200&sr=8-3&th=1"> Link </a> |
-| Solderable Breadboard | Connects all soldered components, more convenient to wear on arm | $11.99 | <a href="https://www.amazon.com/Solderable-Breadboard-Electronics-Projects-Gold-Plated/dp/B07YSCGBL7?th=1"> Link </a> |
-| Solderable Breadboard | Connects all soldered components, more convenient to wear on arm | $11.99 | <a href="https://www.amazon.com/Solderable-Breadboard-Electronics-Projects-Gold-Plated/dp/B07YSCGBL7?th=1"> Link </a> |
-| Solderable Breadboard | Connects all soldered components, more convenient to wear on arm | $11.99 | <a href="https://www.amazon.com/Solderable-Breadboard-Electronics-Projects-Gold-Plated/dp/B07YSCGBL7?th=1"> Link </a> |
 | Solderable Breadboard | Connects all soldered components, more convenient to wear on arm | $11.99 | <a href="https://www.amazon.com/Solderable-Breadboard-Electronics-Projects-Gold-Plated/dp/B07YSCGBL7?th=1"> Link </a> |
 
 # Other Resources/Examples
