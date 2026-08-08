@@ -1,11 +1,13 @@
 # Wrist Rehab Device
 
-| **Engineer** | **School** | **Interest** | **Grade** |
+I designed and built a wearable wrist rehabilitation device that uses a flex sensor, LEDs, and piezo buzzers to give feedback when a person’s wrist moves outside of a set range of motion. The device is attached to a wrist compression sleeve and uses an Arduino Nano ESP32 to read sensor data, turn on a green light for correct positioning, and activate red lights and buzzers for incorrect positioning. My biggest challenges were getting consistent flex-sensor readings and securely wiring the wearable components, but the project helped me learn more about coding, soldering, circuit building, and how biomedical devices can give users real-time feedback.
 
+| **Engineer** | **School** | **Area of Interest** | **Grade** |
+|:--:|:--:|:--:|:--:|
 | Sasha S | Emerald High School | Biomedical Engineering | Incoming Junior
 
-add pic here
-  
+pic
+
 # Final Milestone
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/3_aAoHigIv4?si=yI1V8K5OgmXrC8RC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -178,6 +180,7 @@ For my first milestone, I got the main parts of my wrist rehab device wired on t
 One challenge I faced was understanding the flex sensor readings, because the numbers were really confusing and sometimes I was seeing values in the thousands even when the sensor looked straight, so I had to spend time figuring out how the sensor actually works. Another problem I ran into was with the piezo buzzers, because I tried a few different ones before noticing that the ones that actually worked had the black bottom housing while the broken ones did not. At first I thought removing the “remove after washing” sticker was why they were not working, but that was not the issue since they should still work without it. I also thought the buzzers needed resistors, so I tested them with and without resistors after seeing mixed information online, and confirmed they did not need resistors since, unlike the Arduino Uno which uses 5 volts, I was using the Arduino Nano ESP32, which has 3.3 volts. Another challenge I faced was wiring everything correctly, since I had a single overlapping wire on the breadboard that connected negative to positive, which I did not notice at first. Because of this, nothing was printing in the serial monitor even though everything seemed fine, and after messing around with the wiring I noticed the hidden white wire and resolved that issue. Additionally, the Arduino and breadboard model were slightly different, which was challenging at first, since the power and ground on Tinkercad were on opposite sides of the breadboard I was using, and I was using another Arduino model (Nano ESP32) instead of the default Arduino Uno that Tinkercad provides. This sometimes messed up how the components on the breadboard connected to the Arduino, but I got used to it by understanding and comparing how the pins were located differently. Tinkercad was also missing the Adafruit IMU, which was important for me to add to my breadboard, so I decided to use Fritzing. In the future, I need to explore the Adafruit libraries in the Arduino application to get a better understanding of how I can apply the IMU to my project. A quick change I could add to the code is, instead of simply saying “Bad” when the wrist is flexed or extended at a poor position, it could say “Tilt wrist up/down” so it is more ideal for the user and they get proper feedback.
 
 <img width="935" height="661" alt="Screenshot 2026-07-17 at 8 43 40 AM" src="https://github.com/user-attachments/assets/b30fbdab-2eed-4d67-838e-dd506257bd3f" />
+
 This schematic shows my wrist rehab prototype on the breadboard. The flex sensor is connected to analog pin A0, and the two piezo buzzers are connected to digital pins 6 and 8. I also tested the LED part quickly in Tinkercad, so that part is shown in the diagram even though I did not wire the LEDs on my actual breadboard yet. The resistors for the LED both have a resistance of 100 ohms, but the actual reisisters I am using have a resistance of 120 ohms, and the resistor for my flex sensor is 10k ohms.
 
 ```ccpp
