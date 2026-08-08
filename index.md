@@ -1,7 +1,7 @@
 # Wrist Rehab Device
-My wrist rehabilitation device
+
 | **Engineer** | **School** | **Interest** | **Grade** |
-|:--:|:--:|:--:|:--:|
+
 | Sasha S | Emerald High School | Biomedical Engineering | Incoming Junior
 
 add pic here
